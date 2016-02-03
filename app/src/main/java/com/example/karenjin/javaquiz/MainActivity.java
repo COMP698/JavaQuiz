@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,16 +20,25 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
 
-        class MyListener implements View.OnClickListener{
+        class trueButtonListener implements View.OnClickListener{
             @Override
             public void onClick(View v) {
-                Log.d("test log", "button pressed" );
+                Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
             }
         }
 
-        MyListener theListener = new MyListener();
-        mTrueButton.setOnClickListener(theListener);
-        mFalseButton.setOnClickListener(theListener);
+        class falseButtonListener implements View.OnClickListener{
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        trueButtonListener theTrueListener = new trueButtonListener();
+        mTrueButton.setOnClickListener(theTrueListener);
+
+        falseButtonListener theFalseListener = new falseButtonListener();
+        mFalseButton.setOnClickListener(theFalseListener);
 
     }
 

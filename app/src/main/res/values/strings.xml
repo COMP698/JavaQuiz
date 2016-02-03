@@ -4,4 +4,7 @@
     <string name="true_button">true</string>
     <string name="false_button">false</string>
     <string name="java_quiz_question1">A final class can not be extended.</string>
+
+    <string name="incorrect_toast">Incorrect!</string>
+    <string name="correct_toast">Correct!</string>
 </resources>
