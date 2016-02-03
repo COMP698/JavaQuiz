@@ -6,7 +6,8 @@
     <string name="java_quiz_question1">A final class can not be extended.</string>
     <string name="java_quiz_question2">Declarations must appear at the start of the body of a method.</string>
     <string name="java_quiz_question3">An individual array element from an array of type int, when passed to a method is passed by value.</string>
-    <string name="java_quiz_question4">Objects of a subclass can not be assigned to a super class reference.</string>
+    <string name="java_quiz_question4">A final class can not be extended.</string>
+    <string name="no_more_question">No more questions.</string>
 
     <string name="incorrect_toast">Incorrect!</string>
     <string name="correct_toast">Correct!</string>

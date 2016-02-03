@@ -2,7 +2,6 @@ package com.example.karenjin.javaquiz;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,9 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mFalseButton;
     private Button mNextButton;
     private TextView mQuestionTextView;
-    private int mCurIndex = 0;
 
-    private List<Question> mQuestionBank= new ArrayList<Question>();
+    QuestionBank mQuestionBank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +29,9 @@ public class MainActivity extends AppCompatActivity {
         mNextButton = (Button) findViewById(R.id.next_button);
         mQuestionTextView = (TextView) findViewById(R.id.question_textView);
 
-        mQuestionBank.add(new Question(R.string.java_quiz_question1, true));
-        mQuestionBank.add(new Question(R.string.java_quiz_question2, false));
-        mQuestionBank.add(new Question(R.string.java_quiz_question3, true));
-        mQuestionBank.add(new Question(R.string.java_quiz_question4, false));
-
-        mQuestionTextView.setText(mQuestionBank.get(mCurIndex).getTextResID());
+        mQuestionBank = new QuestionBank();
+        mQuestionBank.generateQuestion();
+        mQuestionTextView.setText(mQuestionBank.questionTextID());
 
         // now using anonymous class
         mTrueButton.setOnClickListener(new View.OnClickListener() {
@@ -53,33 +48,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mCurIndex == mQuestionBank.size()-1)
-                    mCurIndex = 0;
-                else
-                    mCurIndex = mCurIndex+1;
-
-                mQuestionTextView.setText(mQuestionBank.get(mCurIndex).getTextResID());
+                if (mQuestionBank.hasMoreQuetion()) {
+                    mQuestionBank.generateQuestion();
+                    mQuestionTextView.setText(mQuestionBank.questionTextID());
+                } else {
+                    mQuestionTextView.setText(R.string.no_more_question);
+                    mFalseButton.setEnabled(false);
+                    mTrueButton.setEnabled(false);
+                    mNextButton.setEnabled(false);
+                }
             }
         });
-
     }
+
     private void checkAnswer(boolean userPressed) {
-        if (userPressed == mQuestionBank.get(mCurIndex).isAnswer()) {
+        if (userPressed == mQuestionBank.questionAnswer()) {
             Toast.makeText(this, R.string.correct_toast,Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.incorrect_toast,Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
-
 }
 
 
