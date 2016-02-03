@@ -20,26 +20,21 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
 
-        class trueButtonListener implements View.OnClickListener{
+
+        // now using anonymous class
+        mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
             }
-        }
-
-        class falseButtonListener implements View.OnClickListener{
+        });
+        
+        mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
             }
-        }
-
-        trueButtonListener theTrueListener = new trueButtonListener();
-        mTrueButton.setOnClickListener(theTrueListener);
-
-        falseButtonListener theFalseListener = new falseButtonListener();
-        mFalseButton.setOnClickListener(theFalseListener);
-
+        });
     }
 
 
