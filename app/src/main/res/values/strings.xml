@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">JavaQuiz</string>
+
     <string name="true_button">true</string>
     <string name="false_button">false</string>
+    <string name="java_quiz_question1">A final class can not be extended.</string>
 </resources>
